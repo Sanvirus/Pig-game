@@ -11,7 +11,7 @@ const current1El = document.getElementById("current--1");
 const diceEl = document.querySelector(".dice");
 const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
-const btnHold = document.querySelector("btn--hold");
+const btnHold = document.querySelector(".btn--hold");
 
 //Star
 score0El.textContent = 0;
@@ -25,7 +25,12 @@ let activePlayer = 0;
 const swichPlayer = function() {
     document.getElementById(`current--${activePlayer}`).textContent =
         currentScore = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
+    
+    if(activePlayer === 0){
+        activePlayer = 1;
+    }else if(activePlayer === 1){
+        activePlayer = 0;
+    }
     player0El.classList.toggle("player--active");
     player1El.classList.toggle("player--active");
 };
@@ -54,7 +59,7 @@ btnRoll.addEventListener("click", function() {
     }
 });
 
-btnHold.addEbentListener("click", function() {
+btnHold.addEventListener("click", function() {
     scores[activePlayer] += currentScore;
 
     document.getElementById(`score--${activePlayer}`).textContent =
